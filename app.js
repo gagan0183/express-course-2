@@ -4,9 +4,10 @@ var app = express();
 var port = process.env.port || 9000;
 
 app.use(express.static('public'));
-app.use(express.static('src/views'));
+app.set('views', './src/views');
+app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
-  res.send('Hello');
+  res.render('index', {title: 'welcome to ejs'});
 });
 app.listen(port, function(err) {
   console.log('running server on port ' + port);
